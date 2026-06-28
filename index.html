@@ -229,18 +229,25 @@
           0 8px 0 rgba(201, 168, 76, 0.1),
           0 10px 30px rgba(0, 0, 0, 0.8);
         transform: perspective(800px) rotateX(4deg);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
       }
       h1.hero-names em {
         font-style: italic;
         color: var(--gold-light);
       }
       .hero-heart {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         font-size: clamp(1.5rem, 4vw, 3rem);
         animation: pulseHeart 1.8s ease-in-out infinite;
         color: var(--terracotta-light);
-        margin: 0 0.5rem;
-        vertical-align: middle;
+        margin: 0 0.25rem;
+        line-height: 1;
       }
       @keyframes pulseHeart {
         0%,
@@ -1054,20 +1061,76 @@
       /* MOBILE */
       @media (max-width: 700px) {
         nav {
-          gap: 1rem;
-          padding: 0.75rem 1rem;
+          gap: 0.6rem;
+          padding: 0.65rem 0.75rem;
+          flex-wrap: wrap;
+          justify-content: center;
         }
         nav a {
-          font-size: 0.72rem;
+          font-size: 0.68rem;
         }
         section {
-          padding: 4rem 1rem;
+          padding: 3.5rem 1rem;
         }
+        /* Hero */
+        #hero {
+          padding: 0 1rem;
+        }
+        h1.hero-names {
+          font-size: clamp(2rem, 10vw, 3.2rem);
+          gap: 0.2rem;
+          transform: none;
+        }
+        .hero-heart {
+          font-size: clamp(1.2rem, 6vw, 2rem);
+        }
+        .hero-badge {
+          font-size: 0.7rem;
+          padding: 0.35rem 1.2rem;
+          margin-bottom: 1.2rem;
+        }
+        .hero-subtitle {
+          font-size: 0.85rem;
+          padding: 0 0.5rem;
+        }
+        .hero-date-badge {
+          font-size: 0.78rem;
+          padding: 0 0.5rem;
+          line-height: 1.8;
+        }
+        .hero-divider {
+          margin: 1.2rem auto;
+          width: 80px;
+        }
+        /* Countdown */
+        .countdown-grid {
+          gap: 0.75rem;
+        }
+        .countdown-ring {
+          width: 80px;
+          height: 80px;
+          transform: none;
+        }
+        .countdown-ring svg {
+          width: 80px;
+          height: 80px;
+        }
+        .countdown-number {
+          font-size: 1.5rem;
+        }
+        .countdown-label {
+          font-size: 0.65rem;
+        }
+        /* Timeline */
         .timeline::before {
           right: 24px;
         }
+        .timeline {
+          margin-top: 2rem;
+        }
         .timeline-event {
           grid-template-columns: 1fr 48px;
+          margin-bottom: 3rem;
         }
         .timeline-event:nth-child(odd) .event-card {
           order: 1;
@@ -1087,6 +1150,15 @@
         .timeline-event:nth-child(even) .event-date-col {
           display: none;
         }
+        .event-card {
+          padding: 1.25rem;
+        }
+        .event-title {
+          font-size: 1.4rem;
+        }
+        .event-meta {
+          font-size: 0.8rem;
+        }
         html[dir="ltr"] .timeline::before {
           right: auto;
           left: 24px;
@@ -1103,11 +1175,75 @@
         html[dir="ltr"] .timeline-event:nth-child(even) .event-node {
           order: 1;
         }
+        /* Locations */
         .locations-grid {
           grid-template-columns: 1fr;
         }
+        .location-map-wrapper {
+          height: 180px;
+        }
+        .location-info {
+          padding: 1.25rem;
+        }
+        .location-name {
+          font-size: 1.25rem;
+        }
+        /* Message */
         .message-card {
-          padding: 2rem 1.25rem;
+          padding: 1.75rem 1rem;
+        }
+        .message-quote {
+          font-size: 1.1rem;
+        }
+        .message-body {
+          font-size: 0.9rem;
+        }
+        /* Section titles */
+        .section-title {
+          font-size: clamp(1.6rem, 6vw, 2.4rem);
+        }
+        /* Language switch */
+        .language-switch {
+          bottom: 0.6rem;
+          right: 0.6rem;
+          width: 140px;
+          height: 34px;
+        }
+        .language-switch button {
+          flex: 0 0 63px;
+          width: 63px;
+          height: 24px;
+          font-size: 0.65rem;
+        }
+        /* Footer */
+        footer {
+          padding: 3.5rem 1rem 2.5rem;
+        }
+        .footer-names {
+          font-size: clamp(1.6rem, 7vw, 2.5rem);
+        }
+      }
+
+      @media (max-width: 400px) {
+        h1.hero-names {
+          font-size: clamp(1.7rem, 11vw, 2.5rem);
+        }
+        .countdown-grid {
+          gap: 0.5rem;
+        }
+        .countdown-ring {
+          width: 68px;
+          height: 68px;
+        }
+        .countdown-ring svg {
+          width: 68px;
+          height: 68px;
+        }
+        .countdown-number {
+          font-size: 1.2rem;
+        }
+        nav a {
+          font-size: 0.62rem;
         }
       }
 
@@ -1411,8 +1547,8 @@
               <span class="event-tag henna">ليلة الحنة</span>
               <h3 class="event-title">ليلة الحنة</h3>
               <div class="event-meta">
-                <span>📅</span> <span>٨ مساءً لي ١٢ مساءً، الخميس، ١٣ أغسطس ٢٠٢٦</span
-                ><br />
+                <span>📅</span>
+                <span>٨ مساءً لي ١٢ مساءً، الخميس، ١٣ أغسطس ٢٠٢٦</span><br />
                 <span>📍</span> قاعة نيرينا، نادي الشرطة<br />
                 صلاح سالم، القاهرة
               </div>
@@ -1436,7 +1572,8 @@
               <span class="event-tag katb">كتب الكتاب</span>
               <h3 class="event-title">كتب الكتاب</h3>
               <div class="event-meta">
-                <span>📅</span> <span>٨ مساءً لي ١٠ مساءً، الجمعة، ١٤ أغسطس ٢٠٢٦</span><br />
+                <span>📅</span>
+                <span>٨ مساءً لي ١٠ مساءً، الجمعة، ١٤ أغسطس ٢٠٢٦</span><br />
                 <span>📍</span> المجمع الإسلامي (ب)<br />
                 الشيخ زايد، الجيزة
               </div>
@@ -1835,13 +1972,15 @@
           "١٤": "14",
           أغسطس: "August",
           "ليلة الحنة": "Henna Night",
-          "٨ مساءً لي ١٢ مساءً، الخميس، ١٣ أغسطس ٢٠٢٦": "8 PM to 12 AM, Thursday, August 13, 2026",
+          "٨ مساءً لي ١٢ مساءً، الخميس، ١٣ أغسطس ٢٠٢٦":
+            "8 PM to 12 AM, Thursday, August 13, 2026",
           "قاعة نيرينا، نادي الشرطة": "Nirena Hall, Police Union Club",
           "صلاح سالم، القاهرة": "Salah Salem, Cairo",
           "أمسية من الموسيقى النوبية الأصيلة والرقص والحنة الجميلة":
             "An evening of traditional Nubian music, dance, and the beautiful art of henna— where families come together to bless the bride with joy and love.",
           "كتب الكتاب": "Katb El-Ketab",
-          "٨ مساءً لي ١٠ مساءً، الجمعة، ١٤ أغسطس ٢٠٢٦": "8 PM to 10 PM, Friday, August 14, 2026",
+          "٨ مساءً لي ١٠ مساءً، الجمعة، ١٤ أغسطس ٢٠٢٦":
+            "8 PM to 10 PM, Friday, August 14, 2026",
           "المجمع الإسلامي (ب)": "Islamic Center (B)",
           "الشيخ زايد، الجيزة": "Sheikh Zayed, Giza",
           "مراسم عقد الزواج المقدسة التي تجمع روحين أمام الله، محاطَيْن بدفء العائلة وأدعية الأحبة.":
